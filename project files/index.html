@@ -5,30 +5,36 @@
 <head>
 	<title>Atlas-Countdowntimer</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css"></script>
-	<script src="js/logic.js"></script>
 </head>
 
 
 
 <body>
-
+	
 	<!--Welcome text at the top left corner of teh web page-->
 	<p class="welcome">Welcome!</p>
-
-
+	
+	
 	<div class="center">
-
+		
+		<p>Input the time you want </p>
+		<input type="number" id="hours">		
+		<input type="number" id="minutes">
+		<input type="number" id="seconds">
+		<input type="submit" id="myBtn" value="Set Time">
+		
 		<!--The p tag displaying the elapsed time-->
-		<p id="timer_text">01:00:00</p>
-
-	<!--The start/stop button-->
-	<button id="start_button" onclick="press_start(3600)">START</button>
-
-	<!--The reset button-->
-	<button id="reset_button">RESET</button>
-
+		<p id="timer_text">00:00:00</p>
+		
+		<!--The start/stop button-->
+		<button id="start_button" >START</button>
+		
+		<!--The reset button-->
+		<button id="reset_button">RESET</button>
+		
 	</div>
 	
+	<script src="js/logic.js"></script>
 </body>
 
 

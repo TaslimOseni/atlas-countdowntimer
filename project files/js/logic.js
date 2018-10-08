@@ -1,10 +1,35 @@
 
+var timer_text = document.getElementById('timer_text');
+var inputHour = document.querySelector("#hours");
+var inputMin = document.querySelector("#minutes");
+var inputSec = document.querySelector("#seconds");
+
+var setTime = document.querySelector("#myBtn");
+
+setTime.addEventListener("click", function() {
+	console.log(inputHour);
+	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value;
+	timer_text.innerHTML = inputTime;
+});
+
+
+start_button.addEventListener("click", function() {
+	
+	var duration = (parseInt(inputHour.value) * 3600) + (parseInt(inputMin.value * 60)) + (parseInt(inputSec.value));
+	console.log(duration);
+	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value
+	timer_text.innerHTML = inputTime;
+	press_start(duration);
+});
+
+
 function press_start(duration){
 
+		var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value
+		console.log(inputTime);
 		duration -= 1;	//I decremented by 1 to cater for the lag that occurs when the timer starts
 
 		//initialization of variables
-		var timer_text = document.getElementById('timer_text');
 		var start_button = document.getElementById('start_button');
 		var reset_button = document.getElementById('reset_button');
 
@@ -37,7 +62,7 @@ function press_start(duration){
 				timer_text.innerHTML = "TIME ELAPSED!!!";
 				reset_button.onclick = function(){
 					timer_text.style.color = "#FF0000";
-					timer_text.innerHTML = "01:00:00";
+					timer_text.innerHTML = inputTime;
 					start_button.innerHTML = "START";
 					start_button.onclick = function(){
 					press_start(3599);
@@ -54,10 +79,11 @@ function press_start(duration){
 	    reset_button.onclick = function(){
 	    		clearInterval(my_countdowntimer);
 	    		timer_text.style.color = "#FF0000";
-				timer_text.innerHTML = "01:00:00";
+				timer_text.innerHTML = inputTime;
 				start_button.innerHTML = "START";
 				start_button.onclick = function(){
-					press_start(3599);
+					console.log("clicked");
+					press_start(duration -1);
 				}
 	    }
 
@@ -86,4 +112,4 @@ function getRemainderDuration(){
 	//extract the seconds and minutes from the string version above and return it
 	return (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
 
-}
+};
