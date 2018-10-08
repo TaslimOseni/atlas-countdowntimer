@@ -9,14 +9,14 @@ function press_start(duration){
 
 
 		//I gave the value of duration to variables timer, minutes and seconds.
-		var timer = duration, minutes, seconds;
+		var the_timer = duration, minutes, seconds;
 
 
 		//The variable below is responsible for the tick-tock change of time. It's a fixed function in JS.
-	    var varry = setInterval(function(){
+	    var my_countdowntimer = setInterval(function(){
 
-	        minutes = parseInt(timer / 60, 10)
-	        seconds = parseInt(timer % 60, 10);
+	        minutes = parseInt(the_timer / 60, 10)
+	        seconds = parseInt(the_timer % 60, 10);
 
 	        //Assigning values to minutes and seconds with the tenary operator
 	        minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -26,8 +26,8 @@ function press_start(duration){
 	        document.getElementById('timer_text').innerHTML = "00:" + minutes + ":" + seconds;
 
 	        //Here, we're checking whether the timer has elapsed (00:00:00)
-	        if(--timer < 0){
-	            clearInterval(varry);
+	        if(--the_timer < 0){
+	            clearInterval(my_countdowntimer);
 	            document.getElementById('timer_text').style.color = "#0000FF";
 				document.getElementById('timer_text').innerHTML = "TIME ELAPSED!!!";
 				document.getElementById('reset_button').onclick = function(){
@@ -47,7 +47,7 @@ function press_start(duration){
 
 	    //when reset is pressed during countdown
 	    document.getElementById('reset_button').onclick = function(){
-	    		clearInterval(varry);
+	    		clearInterval(my_countdowntimer);
 	    		document.getElementById('timer_text').style.color = "#FF0000";
 				document.getElementById('timer_text').innerHTML = "01:00:00";
 				document.getElementById('start_button').innerHTML = "START";
@@ -60,7 +60,7 @@ function press_start(duration){
 	    document.getElementById('start_button').onclick = function(){
 	    	//if the text on the start-button is 'stop'
 	    	if(document.getElementById('start_button').textContent === 'STOP'){
-	    		clearInterval(varry);
+	    		clearInterval(my_countdowntimer);
 	    		document.getElementById('start_button').innerHTML = "START";
 	    		document.getElementById('timer_text').style.color = "#FFFF00";
 	    	}
@@ -78,9 +78,7 @@ function getRemainderDuration(){
 	//get the string version of the time left
 	var timeLeft = document.getElementById('timer_text').textContent;
 
-	//extract the seconds and minutes from the string version above
-	var ttt = (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
+	//extract the seconds and minutes from the string version above and return it
+	return (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
 
-	//return what we got
-	return ttt;
 }
