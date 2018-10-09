@@ -13,8 +13,10 @@ setTime.addEventListener("click", function() {
 		console.log(inputHour.value);
 		inputHour.value = "00";
 		console.log(inputHour.value);
-	} else if(inputMin.value === "") {
-		inputMin.value == "00";
+	}
+	
+	if(inputMin.value === "") {
+		inputMin.value = "00";
 	}
 	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value;
 	timer_text.innerHTML = inputTime;
