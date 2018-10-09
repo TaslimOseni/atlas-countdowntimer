@@ -14,17 +14,28 @@ body{
 	color: #FFFF00;
 	font-weight: bold;
 	font-size: 100px;
+	margin: 20px;
 }
 
 
-button{
+button, #myBtn {
 	height: 50px;
-	width: 150px;
+	width: 100px;
 	margin: 20px;
+	border-radius: 10px;
 }
 
 .welcome{
 	color: #FFFFFF;
 	font-size: 30px;
 	margin: 20px;
+}
+
+input[type="number"] {
+	border-radius: 10px;
+
+}
+
+p {
+	color: white;
 }

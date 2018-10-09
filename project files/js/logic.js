@@ -8,13 +8,20 @@ var setTime = document.querySelector("#myBtn");
 
 setTime.addEventListener("click", function() {
 	console.log(inputHour);
+	
+	if(inputHour.value === "") {
+		console.log(inputHour.value);
+		inputHour.value = "00";
+		console.log(inputHour.value);
+	} else if(inputMin.value === "") {
+		inputMin.value == "00";
+	}
 	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value;
 	timer_text.innerHTML = inputTime;
 });
 
 
 start_button.addEventListener("click", function() {
-	
 	var duration = (parseInt(inputHour.value) * 3600) + (parseInt(inputMin.value * 60)) + (parseInt(inputSec.value));
 	console.log(duration);
 	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value

@@ -18,11 +18,14 @@
 	<div class="center">
 		
 		<p>Input the time you want </p>
-		<input type="number" id="hours">		
+		<p>Hour: </p>
+		<input type="number" id="hours">
+		<p>MInutes: </p>		
 		<input type="number" id="minutes">
-		<input type="number" id="seconds">
-		<input type="submit" id="myBtn" value="Set Time">
-		
+		<p>Seconds: </p>
+		<input type="number" max="60" id="seconds"><br>
+		<!-- <input type="submit" id="myBtn" value="Set Time"> -->
+		<button id="myBtn">Set Time</button>
 		<!--The p tag displaying the elapsed time-->
 		<p id="timer_text">00:00:00</p>
 		
