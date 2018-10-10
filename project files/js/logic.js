@@ -1,68 +1,67 @@
 
 var timer_text = document.getElementById('timer_text');
-var inputHour = document.querySelector("#hours");
-var inputMin = document.querySelector("#minutes");
-var inputSec = document.querySelector("#seconds");
-
+var total_minutes = document.querySelector("#minutes_inputted");
 var setTime = document.querySelector("#myBtn");
 
-setTime.addEventListener("click", function() {
-	console.log(inputHour);
-	
-	if(inputHour.value === "") {
-		console.log(inputHour.value);
-		inputHour.value = "00";
-		console.log(inputHour.value);
+
+
+setTime.addEventListener("click", function(){
+
+	if(total_minutes.value === ""){
+		alert("Please input a valid number");
 	}
-	
-	if(inputMin.value === "") {
-		inputMin.value = "00";
+	else{
+		var hours = Math.floor(parseInt(total_minutes.value, 10) / 60);
+		var minutes = parseInt(total_minutes.value, 10) % 60;
+		var seconds = (parseInt(total_minutes.value, 10) * 60) % 60;
+
+		hours = hours < 10 ? "0" + hours : hours;
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
 	}
-	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value;
-	timer_text.innerHTML = inputTime;
+
 });
 
 
-start_button.addEventListener("click", function() {
-	var duration = (parseInt(inputHour.value) * 3600) + (parseInt(inputMin.value * 60)) + (parseInt(inputSec.value));
-	console.log(duration);
-	var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value
-	timer_text.innerHTML = inputTime;
-	press_start(duration);
-});
 
 
-function press_start(duration){
+function press_start(){
 
-		var inputTime = inputHour.value + ":" + inputMin.value + ":" + inputSec.value
-		console.log(inputTime);
-		duration -= 1;	//I decremented by 1 to cater for the lag that occurs when the timer starts
+		//deaden the set_time button
+		setTime.onclick = null;
+
+		var duration = getRemainderDuration() - 1;   //I decremented by 1 to cater for the lag that occurs when the timer starts
+
 
 		//initialization of variables
 		var start_button = document.getElementById('start_button');
 		var reset_button = document.getElementById('reset_button');
 
 
-		timer_text.style.color = "#00FF00";	//turn the text colour to green
+		timer_text.style.color = "#00FF00";		//turn the text colour to green
 		start_button.innerHTML = "STOP";		//change button text from 'start' to 'stop'
 
 
-		//I gave the value of duration to variables timer, minutes and seconds.
-		var the_timer = duration, minutes, seconds;
+		//I gave the value of duration to variables timer, hours, minutes and seconds.
+		var the_timer = duration, hours, minutes, seconds;
 
 
 		//The variable below is responsible for the tick-tock change of time. It's a fixed function in JS.
 	    var my_countdowntimer = setInterval(function(){
 
-	        minutes = parseInt(the_timer / 60, 10)
-	        seconds = parseInt(the_timer % 60, 10);
+	    	var hours = Math.floor(parseInt(the_timer / 3600, 10));
+	        var minutes = Math.floor(parseInt(the_timer % 3600, 10) / 60);
+	        var seconds = Math.floor(parseInt(the_timer % 3600, 10) % 60);
 
 	        //Assigning values to minutes and seconds with the tenary operator
+	        hours = hours < 10 ? "0" + hours : hours;
 	        minutes = minutes < 10 ? "0" + minutes : minutes;
 	        seconds = seconds < 10 ? "0" + seconds : seconds;
 
 	        //Setting the final time.. Since we'd always be counting down from an hour, I left the hour field as '00'
-	        timer_text.innerHTML = "00:" + minutes + ":" + seconds;
+	        timer_text.innerHTML = hours +":" + minutes + ":" + seconds;
 
 	        //Here, we're checking whether the timer has elapsed (00:00:00)
 	        if(--the_timer < 0){
@@ -71,7 +70,7 @@ function press_start(duration){
 				timer_text.innerHTML = "TIME ELAPSED!!!";
 				reset_button.onclick = function(){
 					timer_text.style.color = "#FF0000";
-					timer_text.innerHTML = inputTime;
+					setTime.click();
 					start_button.innerHTML = "START";
 					start_button.onclick = function(){
 					press_start(3599);
@@ -91,7 +90,6 @@ function press_start(duration){
 				timer_text.innerHTML = inputTime;
 				start_button.innerHTML = "START";
 				start_button.onclick = function(){
-					console.log("clicked");
 					press_start(duration -1);
 				}
 	    }
@@ -119,6 +117,6 @@ function getRemainderDuration(){
 	var timeLeft = timer_text.textContent;
 
 	//extract the seconds and minutes from the string version above and return it
-	return (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
+	return (parseInt(timeLeft.charAt(0) + timeLeft.charAt(1)) * 3600) + (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
 
 };
