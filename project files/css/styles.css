@@ -1,5 +1,10 @@
+:root{
+    --blue-color:#2f7de1;
+}
+
 body{
-	background-color: #232323;
+	background-color: #c4c4c4;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .center{
@@ -8,6 +13,14 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: var(--blue-color);
+}
+
+.logo{
+    width: 80px;
 }
 
 #timer_text{
@@ -20,9 +33,25 @@ body{
 
 button, #myBtn {
 	height: 40px;
-	width: 100px;
-	margin: 20px;
-	border-radius: 10px;
+	border-radius: 2px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#myBtn{
+    width: 290px;
+    border-radius: 20px;
+    margin-top: 19px;
+}
+
+#myBtn:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+#myBtn:focus{
+    outline: 0;
 }
 
 .welcome{
@@ -32,8 +61,22 @@ button, #myBtn {
 }
 
 input[type="number"] {
-	border-radius: 10px;
+    width: 70px;
+    border: none;
+	border-radius:2px;
+    height: 25px;
+    padding: 5px;
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+    text-align: center;
+}
 
+input[type="number"]:focus{
+    outline: none;
+}
+
+input::placeholder{
+    text-align: center;
 }
 
 p {
