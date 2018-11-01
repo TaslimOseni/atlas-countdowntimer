@@ -18,8 +18,15 @@
 	<div class="center">
 		
 		<!-- The fields that accept the initial input -->
-		<p>Input the number of minutes you want to count-down from</p>
-		<p><input type="number" id="minutes_inputted"><button id="myBtn">Set Time</button></p>
+		<p>Input the time you want to count-down from</p>
+		<p><span>Hours:</span>
+			<input type="number" id="hours_input" min="0" max="24">
+			<span>Minutes:</span>
+			<input type="number" id="minutes_input" min="0" max="59">
+			<span>Seconds:</span>
+			<input type="number" id="seconds_input" min="0" max="60">
+			<button id="myBtn">Set Time</button>
+		</p>
 
 
 		<div style="margin-top: 60px">
