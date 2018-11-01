@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>Atlas-Countdowntimer</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+
+
+<body>
+	
+	<!--Welcome text at the top left corner of teh web page-->
+	<p class="welcome">Welcome!</p>
+	
+	
+	<div class="center">
+		
+		<!-- The fields that accept the initial input -->
+		<p>Input the time you want to count-down from</p>
+		<p>
+			<form>
+			<span>Hours:</span>
+			<input type="number" id="hours_input" min="0" max="24">
+			<span>Minutes:</span>
+			<input type="number" id="minutes_input" min="0" max="59">
+			<span>Seconds:</span>
+			<input type="number" id="seconds_input" min="0" max="60">
+			<div id="errMessage"></div>
+			<input type="button" id="myBtn" value="Set Time">
+		</form>
+		</p>
+
+
+		<div style="margin-top: 60px">
+
+			<!--The p tag displaying the elapsed time-->
+			<p id="timer_text">00:00:00</p>
+			
+			<!--The start/stop button-->
+			<button id="start_button" onclick="press_start()">START</button>
+			
+			<!--The reset button-->
+			<button id="reset_button">RESET</button>
+
+		</div>
+		
+	</div>
+	
+	<!-- Javascript link -->
+	<script src="js/logic.js"></script>
+</body>
+
+
+</html>
