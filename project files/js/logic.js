@@ -120,3 +120,15 @@ function getRemainderDuration(){
 	return (parseInt(timeLeft.charAt(0) + timeLeft.charAt(1)) * 3600) + (parseInt(timeLeft.charAt(3) + timeLeft.charAt(4)) * 60) + parseInt(timeLeft.charAt(6) + timeLeft.charAt(7));
 
 };
+
+
+function pauseTimer(timer, isTimerOn, start_button){
+	if(isTimerOn){
+		clearInterval(timer);
+		start_button.innerHTML = "START";
+	}
+	else{
+		// startTimer(start_button.getText()) Depends on Dan's start method
+		start_button.innerHTML = "PAUSE";
+	}
+}
