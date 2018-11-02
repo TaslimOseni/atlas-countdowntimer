@@ -6,9 +6,12 @@ var seconds_input = document.getElementById('seconds_input');
 var minutes_input = document.getElementById('minutes_input');
 var hours_input = document.getElementById('hours_input');
 
+//Buttons
 var resetBtn = document.getElementById('reset_button');
 var pauseBtn = document.getElementById('pause_button');
 
+
+//Conversion rate
 var second = 1000; // Total Millisecond In One Sec
 var minute = second * 60; // Total Sec In One Min
 var hour = minute * 60; // Total Min In One Hour
@@ -16,10 +19,12 @@ var day = hour * 24; // Total Hour In One Day
 
 var sec_val, min_val, hour_val;
 
+//Sound
 var alarm = document.getElementById('player');
 
 var timer;
 
+//Flags
 var isPaused = false;
 var isCounting;
 
@@ -67,12 +72,11 @@ setTimeBtn.addEventListener('click', function(e){
         if(end_date <= 0){
             isCounting = false;
             timer_text.style.color = "#FF0000";
-            timer_text.innerHTML = "TIME ELAPSED!!!";
+            timer_text.innerHTML = "TIME UP!";
             alarm.play();
             return;
         }
 
-        // var days = Math.floor(remain / day); // Get Remaining Days
         var hours = Math.floor((end_date % day) / hour); // Get Remaining Hours
         var minutes = Math.floor((end_date % hour) / minute); // Get Remaining Min
         var seconds = Math.floor((end_date % minute) / second); // Get Remaining Sec
@@ -97,6 +101,7 @@ resetBtn.addEventListener('click', function(){
     alarm.pause();
     alarm.currentTime = 0;
     timer_text.innerHTML = "00:00:00";
+    pauseBtn.innerHTML = "PAUSE";
 });
 
 pauseBtn.addEventListener('click', function(){
