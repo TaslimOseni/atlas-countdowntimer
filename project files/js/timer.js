@@ -48,6 +48,12 @@ setTimeBtn.addEventListener('click', function(e){
         return;
     }
 
+    if(min_val > 60 || sec_val > 60){
+        alert("Please enter a valid time!!!");
+        resetInputs();
+        return;
+    }
+
     var hours_text = hour_val == 0 ? "00" : hour_val < 10 ? "0" + hour_val : hour_val;
 	var minutes_text = min_val == 0 ? "00" : min_val < 10 ? "0" + min_val : min_val;
 	var seconds_text = sec_val == 0 ? "00" : sec_val < 10 ? "0" + sec_val : sec_val;
@@ -59,6 +65,7 @@ setTimeBtn.addEventListener('click', function(e){
             end_date = end_date - 1000;
         }
         if(end_date <= 0){
+            isCounting = false;
             timer_text.style.color = "#FF0000";
             timer_text.innerHTML = "TIME ELAPSED!!!";
             alarm.play();
@@ -77,12 +84,6 @@ setTimeBtn.addEventListener('click', function(e){
         timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
     }
     
-    // console.log("Selected", sec_val, min_val, hour_val);
-    // console.log("Ending",end_date);
-
-    
-
-    // timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
     timer = setInterval(showTimer, 1000); // Display Timer In Every 1 Sec
 
     e.preventDefault();
