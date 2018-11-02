@@ -53,7 +53,7 @@ setTimeBtn.addEventListener('click', function(e){
         return;
     }
 
-    if(min_val > 60 || sec_val > 60){
+    if(min_val >= 60 || sec_val >= 60){
         alert("Please enter a valid time!!!");
         resetInputs();
         return;
@@ -67,12 +67,13 @@ setTimeBtn.addEventListener('click', function(e){
 
     function showTimer(){
         if(!isPaused){
-            end_date = end_date - 1000;
+            end_date = end_date - second;
         }
         if(end_date <= 0){
             isCounting = false;
             timer_text.style.color = "#FF0000";
             timer_text.innerHTML = "TIME UP!";
+            setTimeBtn.disabled = false;
             alarm.play();
             return;
         }
@@ -90,6 +91,8 @@ setTimeBtn.addEventListener('click', function(e){
     
     timer = setInterval(showTimer, 1000); // Display Timer In Every 1 Sec
 
+    setTimeBtn.disabled = true;
+
     e.preventDefault();
 });
 
@@ -101,6 +104,7 @@ resetBtn.addEventListener('click', function(){
     alarm.pause();
     alarm.currentTime = 0;
     timer_text.innerHTML = "00:00:00";
+    setTimeBtn.disabled = false;
     pauseBtn.innerHTML = "PAUSE";
 });
 
@@ -113,6 +117,7 @@ pauseBtn.addEventListener('click', function(){
             timer_text.style.color = "#FFFF00";
         }else{
             pauseBtn.innerHTML = "PAUSE";
+            timer_text.style.color = "#00FF00";
         }
     }else{
         alert("The timer is not on, cant pause!!!");
