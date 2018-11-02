@@ -122,7 +122,7 @@ function getRemainderDuration(){
 };
 
 
-function pauseTimer(timer, isTimerOn, start_button){
+function pauseTimer(isTimerOn, timer, start_button){
 	if(isTimerOn){
 		clearInterval(timer);
 		start_button.innerHTML = "START";
@@ -131,4 +131,9 @@ function pauseTimer(timer, isTimerOn, start_button){
 		// startTimer(start_button.getText()) Depends on Dan's start method
 		start_button.innerHTML = "PAUSE";
 	}
+}
+
+function resetTimer(displayView, timer){
+	clearInterval(timer);
+	displayView.innerHTML = "00:00:00";
 }
