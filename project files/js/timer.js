@@ -77,7 +77,7 @@ setTimeBtn.addEventListener('click', function(e){
         var minutes = Math.floor((end_date % hour) / minute); // Get Remaining Min
         var seconds = Math.floor((end_date % minute) / second); // Get Remaining Sec
 
-         hours_text = hours == 0 ? "00" : hours < 10 ? "0" + hours : hours;
+        hours_text = hours == 0 ? "00" : hours < 10 ? "0" + hours : hours;
         minutes_text = minutes == 0 ? "00" : minutes < 10 ? "0" + minutes : minutes;
         seconds_text = seconds == 0 ? "00" : seconds < 10 ? "0" + seconds : seconds;
 
@@ -90,7 +90,7 @@ setTimeBtn.addEventListener('click', function(e){
 });
 
 resetBtn.addEventListener('click', function(){
-    console.log("Restting");
+    isCounting = false;
     timer_text.style.color = "#00FF00"
     clearInterval(timer);
     resetInputs();
