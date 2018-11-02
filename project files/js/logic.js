@@ -10,7 +10,6 @@ var hours_input = document.getElementById('hours_input');
 
 
 
-
 setTime.addEventListener("click", function(e){
 	//e.preventDefault();
 	hours_value = hours_input.value;
@@ -39,9 +38,11 @@ setTime.addEventListener("click", function(e){
 	var seconds_text = seconds_value == 0 ? "00" : seconds_value < 10 ? "0" + seconds_value : seconds_value;
 
 	timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
+
 	
 
 });
+
 
 
 
