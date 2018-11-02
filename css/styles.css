@@ -33,6 +33,7 @@ button, #myBtn {
 
 input[type="number"] {
 	border-radius: 10px;
+	text-align: center;
 
 }
 

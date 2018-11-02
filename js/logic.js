@@ -1,32 +1,43 @@
 
 var timer_text = document.getElementById('timer_text');
+var total_hours = document.querySelector("#hours_input");
 var total_minutes = document.querySelector("#minutes_input");
-//var total_seconds = document.querySelector("#seconds_input");
+var total_seconds = document.querySelector("#seconds_input");
 var setTime = document.querySelector("#myBtn");
 
 
 
 setTime.addEventListener("click", function(){
 
-	if(!total_minutes.value){
+	if( total_hours.value === "" && total_minutes.value ==="" && total_seconds.value === ""){
 		alert("Please input a valid number");
 	}
 
 	else {
 		
-		var hours = Math.floor(parseInt(total_minutes.value, 10) / 60);
-		var minutes = parseInt(total_minutes.value, 10) % 60;
-		var seconds = (parseInt(total_minutes.value, 10) * 60) % 60;
+		var hours = Math.floor(parseInt(total_hours.value, 10));
+		var minutes = Math.floor(parseInt(total_minutes.value, 10));
+		var seconds = Math.floor(parseInt(total_seconds.value, 10));
 
 		hours = hours < 10 ? "0" + hours : hours;
 		minutes = minutes < 10 ? "0" + minutes : minutes;
 		seconds = seconds < 10 ? "0" + seconds : seconds;
 
-		
-		timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
-		
-		
+		if (isNaN(hours)) {
+			hours = 0 + "0";
+			timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
+		}
+		if (isNaN(minutes)) {
+			minutes = 0 + "0";
+			timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
+		}
+		 if (isNaN(seconds)){
+			seconds = 0 + "0";
+			timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
+		}
 	}
+		
+	
 
 });
 
