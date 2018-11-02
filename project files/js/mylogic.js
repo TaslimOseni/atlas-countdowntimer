@@ -6,6 +6,7 @@ var seconds_input = document.getElementById('seconds_input');
 var minutes_input = document.getElementById('minutes_input');
 var hours_input = document.getElementById('hours_input');
 
+var resetBtn = document.getElementById('reset_button');
 
 var second = 1000; // Total Millisecond In One Sec
  var minute = second * 60; // Total Sec In One Min
@@ -68,6 +69,13 @@ setTimeBtn.addEventListener('click', function(e){
     timer = setInterval(showTimer, 1000); // Display Timer In Every 1 Sec
 
     e.preventDefault();
+});
+
+resetBtn.addEventListener('click', function(){
+    console.log("Restting");
+    clearInterval(timer);
+    resetInputs();
+    timer_text.innerHTML = "00:00:00";
 })
 
 function resetInputs(){
