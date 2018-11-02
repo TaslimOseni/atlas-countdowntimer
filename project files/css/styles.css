@@ -1,5 +1,11 @@
+:root{
+    --blue-color:#2f7de1;
+}
+
 body{
-	background-color: #232323;
+	background-color: #c4c4c4;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
 }
 
 .center{
@@ -8,6 +14,14 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: var(--blue-color);
+}
+
+.logo{
+    width: 80px;
 }
 
 #timer_text{
@@ -18,11 +32,34 @@ body{
 }
 
 
-button, #myBtn {
+button {
 	height: 40px;
-	width: 100px;
-	margin: 20px;
-	border-radius: 10px;
+	border-radius: 5px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 5px 15px;
+}
+
+#myBtn{
+    height: 40px;
+	border-radius: 2px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    width: 290px;
+    border-radius: 20px;
+    margin-top: 19px;
+}
+
+#myBtn:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+#myBtn:focus{
+    outline: 0;
 }
 
 .welcome{
@@ -32,10 +69,44 @@ button, #myBtn {
 }
 
 input[type="number"] {
-	border-radius: 10px;
+    width: 70px;
+    border: none;
+	border-radius:2px;
+    height: 25px;
+    padding: 5px;
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+    text-align: center;
+}
 
+input[type="number"]:focus{
+    outline: none;
+}
+
+input::placeholder{
+    text-align: center;
 }
 
 p {
 	color: white;
+}
+
+@media(max-width:768px){
+    
+    .center{
+        width: 90%;
+    }
+    #timer_text{
+        font-size: 50px;
+    }
+    
+    input[type="number"]{
+        width: 60px;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+    
+    #myBtn{
+        width: 240px;
+    }
 }
