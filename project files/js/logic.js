@@ -3,24 +3,43 @@ var timer_text = document.getElementById('timer_text');
 var total_minutes = document.querySelector("#minutes_inputted");
 var setTime = document.querySelector("#myBtn");
 
+//Text Inputs
+var seconds_input = document.getElementById('seconds_input');
+var minutes_input = document.getElementById('minutes_input');
+var hours_input = document.getElementById('hours_input');
 
 
-setTime.addEventListener("click", function(){
 
-	if(total_minutes.value === ""){
-		alert("Please input a valid number");
+
+setTime.addEventListener("click", function(e){
+	//e.preventDefault();
+	hours_value = hours_input.value;
+	minutes_value = minutes_input.value;
+	seconds_value = seconds_input.value;
+	console.log("Seconds",seconds_value)
+	console.log("Minutes",minutes_value)
+	console.log("Hours",hours_value);
+
+	var end_date = (hours_value*60*60*1000) + (minutes_value * 60*1000) + (seconds_value * 1000);
+	console.log(end_date);
+
+	if(end_date <= 0){
+		alert("Please enter a time");
+		return;
 	}
-	else{
-		var hours = Math.floor(parseInt(total_minutes.value, 10) / 60);
-		var minutes = parseInt(total_minutes.value, 10) % 60;
-		var seconds = (parseInt(total_minutes.value, 10) * 60) % 60;
 
-		hours = hours < 10 ? "0" + hours : hours;
-		minutes = minutes < 10 ? "0" + minutes : minutes;
-		seconds = seconds < 10 ? "0" + seconds : seconds;
+	// console.log(minutes_value == 0);
+	
+	// var hours = Math.floor(parseInt(total_minutes.value, 10) / 60);
+	// var minutes = parseInt(total_minutes.value, 10) % 60;
+	// var seconds = (parseInt(total_minutes.value, 10) * 60) % 60;
 
-		timer_text.innerHTML = hours + ":" + minutes + ":" + seconds;
-	}
+	var hours_text = hours_value == 0 ? "00" : hours_value < 10 ? "0" + hours_value : hours_value;
+	var minutes_text = minutes_value == 0 ? "00" : minutes_value < 10 ? "0" + minutes_value : minutes_value;
+	var seconds_text = seconds_value == 0 ? "00" : seconds_value < 10 ? "0" + seconds_value : seconds_value;
+
+	timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
+	
 
 });
 
@@ -46,6 +65,7 @@ function press_start(){
 
 		//I gave the value of duration to variables timer, hours, minutes and seconds.
 		var the_timer = duration, hours, minutes, seconds;
+		console.log(the_timer)
 
 
 		//The variable below is responsible for the tick-tock change of time. It's a fixed function in JS.
