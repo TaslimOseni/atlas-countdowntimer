@@ -7,11 +7,12 @@ var minutes_input = document.getElementById('minutes_input');
 var hours_input = document.getElementById('hours_input');
 
 var resetBtn = document.getElementById('reset_button');
+var pauseBtn = document.getElementById('pause_button');
 
 var second = 1000; // Total Millisecond In One Sec
- var minute = second * 60; // Total Sec In One Min
- var hour = minute * 60; // Total Min In One Hour
- var day = hour * 24; // Total Hour In One Day
+var minute = second * 60; // Total Sec In One Min
+var hour = minute * 60; // Total Min In One Hour
+var day = hour * 24; // Total Hour In One Day
 
 var sec_val, min_val, hour_val;
 
@@ -19,8 +20,13 @@ var alarm = document.getElementById('player');
 
 var timer;
 
+var isPaused = false;
+var isCounting;
+
 setTimeBtn.addEventListener('click', function(e){
     
+    isCounting = true;
+
     clearInterval(timer);
     console.log('Button clicked');
     hour_val = hours_input.value;
@@ -42,10 +48,18 @@ setTimeBtn.addEventListener('click', function(e){
         return;
     }
 
+    var hours_text = hour_val == 0 ? "00" : hour_val < 10 ? "0" + hour_val : hour_val;
+	var minutes_text = min_val == 0 ? "00" : min_val < 10 ? "0" + min_val : min_val;
+	var seconds_text = sec_val == 0 ? "00" : sec_val < 10 ? "0" + sec_val : sec_val;
+
+	timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
+
     function showTimer(){
-        end_date = end_date - 1000;
+        if(!isPaused){
+            end_date = end_date - 1000;
+        }
         if(end_date <= 0){
-            timer_text.style.color = "#0000FF";
+            timer_text.style.color = "#FF0000";
             timer_text.innerHTML = "TIME ELAPSED!!!";
             alarm.play();
             return;
@@ -56,9 +70,9 @@ setTimeBtn.addEventListener('click', function(e){
         var minutes = Math.floor((end_date % hour) / minute); // Get Remaining Min
         var seconds = Math.floor((end_date % minute) / second); // Get Remaining Sec
 
-        var hours_text = hours == 0 ? "00" : hours < 10 ? "0" + hours : hours;
-        var minutes_text = minutes == 0 ? "00" : minutes < 10 ? "0" + minutes : minutes;
-        var seconds_text = seconds == 0 ? "00" : seconds < 10 ? "0" + seconds : seconds;
+         hours_text = hours == 0 ? "00" : hours < 10 ? "0" + hours : hours;
+        minutes_text = minutes == 0 ? "00" : minutes < 10 ? "0" + minutes : minutes;
+        seconds_text = seconds == 0 ? "00" : seconds < 10 ? "0" + seconds : seconds;
 
         timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
     }
@@ -76,11 +90,27 @@ setTimeBtn.addEventListener('click', function(e){
 
 resetBtn.addEventListener('click', function(){
     console.log("Restting");
+    timer_text.style.color = "#00FF00"
     clearInterval(timer);
     resetInputs();
     alarm.pause();
     alarm.currentTime = 0;
     timer_text.innerHTML = "00:00:00";
+});
+
+pauseBtn.addEventListener('click', function(){
+    if(isCounting){
+        console.log("Pausing");
+        isPaused = !isPaused;
+        if(isPaused){
+            pauseBtn.innerHTML = "PLAY"; 
+            timer_text.style.color = "#FFFF00";
+        }else{
+            pauseBtn.innerHTML = "PAUSE";
+        }
+    }else{
+        alert("The timer is not on, cant pause!!!");
+    }
 })
 
 function resetInputs(){
