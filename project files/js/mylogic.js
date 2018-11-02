@@ -15,6 +15,8 @@ var second = 1000; // Total Millisecond In One Sec
 
 var sec_val, min_val, hour_val;
 
+var alarm = document.getElementById('player');
+
 var timer;
 
 setTimeBtn.addEventListener('click', function(e){
@@ -45,6 +47,7 @@ setTimeBtn.addEventListener('click', function(e){
         if(end_date <= 0){
             timer_text.style.color = "#0000FF";
             timer_text.innerHTML = "TIME ELAPSED!!!";
+            alarm.play();
             return;
         }
 
@@ -75,6 +78,8 @@ resetBtn.addEventListener('click', function(){
     console.log("Restting");
     clearInterval(timer);
     resetInputs();
+    alarm.pause();
+    alarm.currentTime = 0;
     timer_text.innerHTML = "00:00:00";
 })
 
