@@ -16,6 +16,7 @@ var second = 1000; // Total Millisecond In One Sec
 var minute = second * 60; // Total Sec In One Min
 var hour = minute * 60; // Total Min In One Hour
 var day = hour * 24; // Total Hour In One Day
+var warning_time = 10000;
 
 var sec_val, min_val, hour_val;
 
@@ -27,6 +28,12 @@ var timer;
 //Flags
 var isPaused = false;
 var isCounting;
+
+//Colours
+var red = "#FF0000";
+var defaultColour = "#000000";
+var yellow = "#FFFF00";
+var green = "#00FF00";
 
 setTimeBtn.addEventListener('click', function(e){
     
@@ -63,15 +70,19 @@ setTimeBtn.addEventListener('click', function(e){
 	var minutes_text = min_val == 0 ? "00" : min_val < 10 ? "0" + min_val : min_val;
 	var seconds_text = sec_val == 0 ? "00" : sec_val < 10 ? "0" + sec_val : sec_val;
 
-	timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
+    timer_text.innerHTML = hours_text + ":" + minutes_text + ":" + seconds_text;
+    timer_text.style.color = (end_date <= warning_time)? red : green;
 
     function showTimer(){
         if(!isPaused){
             end_date = end_date - second;
         }
+
+        if(end_date <= warning_time && !isPaused){
+            timer_text.style.color = red;
+        }
         if(end_date <= 0){
             isCounting = false;
-            timer_text.style.color = "#FF0000";
             timer_text.innerHTML = "TIME UP!";
             setTimeBtn.disabled = false;
             alarm.play();
@@ -98,7 +109,7 @@ setTimeBtn.addEventListener('click', function(e){
 
 resetBtn.addEventListener('click', function(){
     isCounting = false;
-    timer_text.style.color = "#00FF00"
+    timer_text.style.color = defaultColour
     clearInterval(timer);
     resetInputs();
     alarm.pause();
@@ -114,13 +125,12 @@ pauseBtn.addEventListener('click', function(){
         isPaused = !isPaused;
         if(isPaused){
             pauseBtn.innerHTML = "PLAY"; 
-            timer_text.style.color = "#FFFF00";
+            timer_text.style.color = yellow;
         }else{
             pauseBtn.innerHTML = "PAUSE";
-            timer_text.style.color = "#00FF00";
         }
     }else{
-        alert("The timer is not on, cant pause!!!");
+        alert("Cannot pause!!!");
     }
 })
 
