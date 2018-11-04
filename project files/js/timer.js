@@ -60,10 +60,20 @@ setTimeBtn.addEventListener('click', function(e){
         return;
     }
 
-    if(min_val >= 60 || sec_val >= 60){
+    if(min_val > 60 || sec_val > 60){
         alert("Please enter a valid time!!!");
         resetInputs();
         return;
+    }
+
+    if(min_val == 60){
+        hour_val+=1;
+        min_val = 0;
+    }
+
+    if(sec_val == 60){
+        min_val += 1;
+        sec_val = 0;
     }
 
     var hours_text = hour_val == 0 ? "00" : hour_val < 10 ? "0" + hour_val : hour_val;
